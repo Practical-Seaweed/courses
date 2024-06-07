@@ -8,7 +8,7 @@ window.onload = () => {
 
 }
 
-async function populateTable(){
+async function populateTable() {
 
     // [ get the courses from the API ]
     let courses = await getCourses();
@@ -27,7 +27,7 @@ async function populateTable(){
 }
 
 // [ the function that takes a table body and some data and puts the data in the tabel body ]
-function buildRow(someTableBody, someData){
+function buildRow(someTableBody, someData) {
 
     // [ create the row for the table ]
     let row = someTableBody.insertRow();
@@ -47,9 +47,16 @@ function buildRow(someTableBody, someData){
     // [ put the relevent course data in the ]
     courseNameCell.innerHTML = someData.courseName;
 
+    // [ create the cell for the course name ]
+    let courseDetailsCell = row.insertCell();
+    // [ put the relevent course data in the ]
+    courseDetailsCell.innerHTML = `
+        <a href="./details.html?courseid=${someData.id}">Show Details</a>
+        `;
+
 }
 
-async function getCourses(){
+async function getCourses() {
 
     // [ the try says try these things and if it doesn't work out, fall into the catch --
     // and deal with the error ]
@@ -59,7 +66,7 @@ async function getCourses(){
         let courses = await response.json();
 
         return courses;
-    }catch(error){
+    } catch (error) {
         console.log(error)
         throw new Error(error)
     }
