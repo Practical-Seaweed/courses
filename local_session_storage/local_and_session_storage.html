@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Local and Session Storage</title>
+</head>
+<body>
+    
+    <h1>Local and Session Storage</h1>
+
+    <div id="dataFromLocalStorage"></div>
+
+    <script>
+        let name = "steve";
+
+        // [ add items to local storage by key/value pair ]
+        window.localStorage.setItem("username", name);
+        window.localStorage.setItem("someKey", "someValue");
+
+        // [ get stuff out of local storage by the key ]
+        let valueFromLocalStorage = localStorage.getItem("username")
+
+        // [ check to see if an item exists in local storage and use it ]
+        // [ otherwise, display that the data doesn't exist ]
+        if(localStorage.getItem("username")){
+            document.querySelector("#dataFromLocalStorage").innerHTML = valueFromLocalStorage;
+        }else {
+            document.querySelector("#dataFromLocalStorage").innerHTML = "data does not exist";
+        }
+
+        // [ check to see if an item exists and is = to a specific value in local storage and use it ]
+        // [ otherwise, display that the data doesn't exist ]
+        if(localStorage.getItem("username") === "steve"){
+            document.querySelector("#dataFromLocalStorage").innerHTML += "Hi, " + valueFromLocalStorage;
+        }else {
+            document.querySelector("#dataFromLocalStorage").innerHTML += "Hello guest!";
+        }
+
+        
+    </script>
+
+
+</body>
+</html>
