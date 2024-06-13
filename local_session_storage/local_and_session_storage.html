@@ -9,9 +9,20 @@
     
     <h1>Local and Session Storage</h1>
 
+    <h3>Local storage stuff</h3>
     <div id="dataFromLocalStorage"></div>
 
+    <h1>Session storage stuff</h1>
+    <div id="dataFromSessionStorage"></div>
     <script>
+
+        /*
+        *
+        * Local storage stuff below
+        * 
+        */
+
+
         let name = "steve";
 
         // [ add items to local storage by key/value pair ]
@@ -20,6 +31,9 @@
 
         // [ get stuff out of local storage by the key ]
         let valueFromLocalStorage = localStorage.getItem("username")
+
+        // [ remove an item from local storage ]
+        localStorage.removeItem("someKey");
 
         // [ check to see if an item exists in local storage and use it ]
         // [ otherwise, display that the data doesn't exist ]
@@ -35,6 +49,36 @@
             document.querySelector("#dataFromLocalStorage").innerHTML += "Hi, " + valueFromLocalStorage;
         }else {
             document.querySelector("#dataFromLocalStorage").innerHTML += "Hello guest!";
+        }
+
+        /*
+        *
+        *
+        * session storage stuff below
+        * 
+        */
+
+        // [ add items to local storage by key/value pair ]
+        sessionStorage.setItem("username", name);
+        sessionStorage.setItem("someKey", "someValue");
+
+        // [ remove an item from local storage ]
+        sessionStorage.removeItem("someKey");
+
+        // [ check to see if an item exists in local storage and use it ]
+        // [ otherwise, display that the data doesn't exist ]
+        if(sessionStorage.getItem("username")){
+            document.querySelector("#dataFromSessionStorage").innerHTML = valueFromLocalStorage;
+        }else {
+            document.querySelector("#dataFromSessionStorage").innerHTML = "data does not exist";
+        }
+
+        // [ check to see if an item exists and is = to a specific value in local storage and use it ]
+        // [ otherwise, display that the data doesn't exist ]
+        if(sessionStorage.getItem("username") === "steve"){
+            document.querySelector("#dataFromSessionStorage").innerHTML += "Hi, " + valueFromLocalStorage;
+        }else {
+            document.querySelector("#dataFromSessionStorage").innerHTML += "Hello guest!";
         }
 
         
